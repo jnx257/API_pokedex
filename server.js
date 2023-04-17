@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser') 
+app.use(bodyParser.json())
 const http = require ('http')
 const PORT = 5000
 const router = express.Router()
 const pokemonRouter = require('./routers/pokemon')
-
-
 
 app.listen(PORT, () => {
     console.log(`Servidor usando a porta ${PORT}`)
@@ -17,5 +16,6 @@ app.get('/', (req,res)=> {
     res.status(200).send("Pagina principal da pokedex :D")
 })
 app.use('/pokemons', pokemonRouter)
+app.use(express.json())
 
 
