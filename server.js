@@ -8,12 +8,12 @@ const router = express.Router()
 const pokemonRouter = require('./routers/pokemon')
 
 app.listen(PORT, () => {
-    console.log(`Servidor usando a porta ${PORT}`)
+    console.log(`using the PORT: ${PORT}`)
 })
 
 //pokedex
 app.get('/', (req,res)=> {
-    res.status(200).send("Pagina principal da pokedex :D")
+    res.status(200).send("Pokedex principal page")
 })
 app.use('/pokemons', pokemonRouter)
 app.use(express.json())

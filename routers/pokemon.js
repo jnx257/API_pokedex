@@ -13,30 +13,30 @@ router.get('/:id',(req,res)=>{
     const PokeId = parseInt(req.params.id)
     const pokemon = GetPoke.find(params => params.id == PokeId)
     if (!pokemon){
-        res.status(400).send("nao tem esse pokemon na primeira geracao, ou ele nao existe...")
+        res.status(400).send("this pokemon inst in first generation or doesnt exist...")
     }
     else {
         res.status(200).json(pokemon)
     }
 })
-router.post('/criarPokemon',(req,res)=>{
+router.post('/creatPokemon',(req,res)=>{
     const NewPokemon = req.body
-    console.log(`novo pokemon se chama: ${NewPokemon.name}` )
+    console.log(`new pokemon calls: ${NewPokemon.name}` )
  if  ( GetPoke.some(pokemon => pokemon.id === NewPokemon.id) ) {  
-res.status(406).send("Um pokemon com esse ID ja existe")
+res.status(406).send("There is already a pokemon with this ")
 }
 else if (!NewPokemon.id || !NewPokemon.name || !NewPokemon.type || !NewPokemon.image ){
-    console.log("Esta faltando a/as propriedades:", !NewPokemon.id ? "id" : !NewPokemon.name ? "name" : !NewPokemon.type ? "type" : "image")
-    res.status(406).send("tem uma ou mais caracteristicas faltando..")
+    console.log("Are missing the/those properties:", !NewPokemon.id ? "id" : !NewPokemon.name ? "name" : !NewPokemon.type ? "type" : "image")
+    res.status(406).send("something is missing..")
 }
 else{
     GetPoke.push(NewPokemon)
     fs.writeFile('getPoke.json', JSON.stringify(GetPoke), (err) => {
         if (err) {
             console.error(err)
-            res.status(500).send('Nao criou um novo pokemon')
+            res.status(500).send('Didnt creat new pokemon')
         } else {
-            res.status(201).send('Novo pokemon adicionado :D')
+            res.status(201).send('New pokemon created :D')
         }
     })
 }
