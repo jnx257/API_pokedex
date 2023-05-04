@@ -6,6 +6,9 @@ const http = require("http");
 const PORT = 5000;
 const router = express.Router();
 const pokemonRouter = require("./routers/pokemon");
+const cors = require('cors')
+app.use(cors())
+
 
 app.listen(PORT, () => {
   console.log(`using the PORT: ${PORT}`);
