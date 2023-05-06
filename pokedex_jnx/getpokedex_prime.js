@@ -7,11 +7,11 @@ function getPoke() {
         data.forEach(element => {
           const row = document.createElement('li')
           const nameElement = document.createElement('li')
-          nameElement.textContent = element.name
+          nameElement.textContent = `name: ${element.name}`
           const idElement = document.createElement('li')
-          idElement.textContent = element.id
+          idElement.textContent = `Id: #${element.id}`
           const typeElement = document.createElement('li')
-          typeElement.textContent = element.type
+          typeElement.textContent = `types: ${element.type}`
           const imageElement = document.createElement('li')
           const image = document.createElement('img')
           image.src = element.image
