@@ -1,8 +1,35 @@
+body{
+    background-color:rgb(192, 15, 15)
+}
 nav {
 display:block;
+text-align: center;
 }
-#pokemonPrime li {
-    border: 3px solid rgb(0, 0, 0);
-    padding: 5px;
-    margin-bottom: 10px;
+#pokemonPrime {
+    background-color:rgba(13, 23, 161, 0.973) ;
+}
+#pokemon-list{
+padding: 10px;
+
+}
+.listbody{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:0;
+    padding:0;
+}
+.pokemon {
+    list-style:none;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+.pokemon img{
+    border: 2px solid black;
+    margin-top:10px
+}
+.pokemon li{
+color: black;
+text-decoration: underline
 }

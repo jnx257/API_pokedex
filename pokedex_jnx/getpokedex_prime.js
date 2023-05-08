@@ -13,10 +13,15 @@ function getPoke() {
           const typeElement = document.createElement('li')
           typeElement.textContent = `types: ${element.type}`
           const imageElement = document.createElement('li')
+          const imageLink = document.createElement('a')
+          imageLink.href = `http://localhost:5000/pokemons/${element.id}`
+          //soon this is going be another html, and in this html will have anoter js to access the specific pokemon 
           const image = document.createElement('img')
           image.src = element.image
           image.alt = element.name
-          imageElement.appendChild(image)
+          imageLink.appendChild(image)
+          imageElement.appendChild(imageLink)
+          row.classList.add('pokemon')
           row.appendChild(nameElement)
           row.appendChild(idElement)
           row.appendChild(typeElement)
@@ -27,3 +32,10 @@ function getPoke() {
       .catch(error => console.log(error))
   }
   getPoke()
+  // function getPokeById (){
+  //   fetch('http://localhost:5000/pokemons/:id')
+  //   .then(response => response.json)
+  //   .then(data =>{
+  //     const pokeData = 
+  //   })
+  
