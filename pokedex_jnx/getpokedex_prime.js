@@ -14,7 +14,7 @@ function getPoke() {
           typeElement.textContent = `types: ${element.type}`
           const imageElement = document.createElement('li')
           const imageLink = document.createElement('a')
-          imageLink.href = `http://localhost:5000/pokemons/${element.id}`
+          imageLink.href = `Idpokemon.html?id=${element.id}`
           //soon this is going be another html, and in this html will have anoter js to access the specific pokemon 
           const image = document.createElement('img')
           image.src = element.image
