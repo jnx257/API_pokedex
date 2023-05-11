@@ -8,30 +8,18 @@ nav {
 nav a {
   color: black;
 }
-#pokemonPrime {
+#pokemonData {
   background-color: rgb(0, 17, 255);
 }
-#pokemon-list {
-  padding: 10px;
-}
-.listbody {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
 .pokemon {
-  list-style: none;
+  text-align: center;
   border: 2px solid black;
-  padding: 10px;
-  margin: 10px;
+  padding-bottom: 30px;
 }
 .pokemon img {
   border: 2px solid black;
   margin-top: 10px;
 }
-.pokemon li {
-  color: black;
+.pokemon h2 {
   text-decoration: underline;
 }
