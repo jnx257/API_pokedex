@@ -1,6 +1,15 @@
 body {
   background-color: rgb(192, 15, 15);
 }
+h1{
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:white
+}
+p, h1 a::before{
+  color:aliceblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
 nav {
   display: block;
   text-align: center;
@@ -9,7 +18,7 @@ nav a {
   color: black;
 }
 #pokemonData {
-  background-color: rgb(0, 17, 255);
+  background-color: rgb(160, 160, 160);
 }
 .pokemon {
   text-align: center;
@@ -19,7 +28,25 @@ nav a {
 .pokemon img {
   border: 2px solid black;
   margin-top: 10px;
+  background-color:beige
 }
 .pokemon h2 {
   text-decoration: underline;
+}
+.pokemonPUT {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: rgb(133, 141, 255);
+  border: 2px solid black
+}
+#submitButton{
+  margin-top: 10px;
+  margin-top: 10px;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+.pokemonPUT label {
+  text-decoration:underline;
 }
