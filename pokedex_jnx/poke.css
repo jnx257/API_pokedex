@@ -20,7 +20,8 @@ nav a {
   color: black;
 }
 #pokemonPrime {
-  background-color: rgb(131, 131, 131);
+  background-color:rgb(32, 138, 180);
+
 }
 #pokemon-list {
   padding: 10px;
@@ -37,10 +38,12 @@ nav a {
   border: 2px solid black;
   padding: 10px;
   margin: 10px;
+  background-color: rgb(131, 131, 131);
 }
 .pokemon img {
   border: 2px solid black;
   margin-top: 10px;
+  background-color:beige
 }
 .pokemon li {
   color: black;

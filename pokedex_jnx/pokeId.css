@@ -24,6 +24,7 @@ nav a {
   text-align: center;
   border: 2px solid black;
   padding-bottom: 30px;
+  background-color:rgb(32, 138, 180);
 }
 .pokemon img {
   border: 2px solid black;
@@ -38,7 +39,7 @@ nav a {
   bottom: 50%;
   right: 50%;
   transform: translate(50%, 50%);
-  background-color: rgb(133, 141, 255);
+  background-color: rgb(131, 131, 131);
   border: 2px solid black
 }
 #submitButton{
@@ -49,4 +50,13 @@ nav a {
 }
 .pokemonPUT label {
   text-decoration:underline;
+}
+#closePopupButton {
+  background-color: red;
+  border: 3px solid black;
+  text-align: center;
+  display: inline-block;
+  font-size: 10px;
+  margin-top: 10px;
+  cursor: pointer;
 }

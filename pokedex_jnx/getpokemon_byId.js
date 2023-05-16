@@ -59,6 +59,8 @@ function DelPoke() {
 }
 
 function pokePUTbutton(event) {
+  //calling event.preventDefault i'm passing that I don't want to execute it as a normal method (dont send nothing until I want it)
+  //normal events this would made a immediately PUT
   event.preventDefault();
   const pokemonPut = document.createElement("form");
   pokemonPut.classList.add("pokemonPUT");
@@ -73,41 +75,52 @@ function pokePUTbutton(event) {
       <br>
       <label for ="pokemonType">Pokemon Type:</label>
       <br>
-      <input type = "radio" id="pokemonTypes" value="Normal"
+      <input type = "checkbox" id="pokemonTypes" value="Normal"
       <label for="pokemonType">Normal</label>
-      <input type = "radio" id="pokemonTypes" value="Fire"
+      <input type = "checkbox" id="pokemonTypes" value="Fire"
       <label for="pokemonType">Fire</label>
-      <input type = "radio" id="pokemonTypes" value="Water"
+      <input type = "checkbox" id="pokemonTypes" value="Water"
       <label for="pokemonType">Water</label>
-      <input type = "radio" id="pokemonTypes" value="Grass"
+      <input type = "checkbox" id="pokemonTypes" value="Grass"
       <label for="pokemonType">Grass</label>
-      <input type = "radio" id="pokemonTypes" value="Flying"
+      <input type = "checkbox" id="pokemonTypes" value="Flying"
       <label for="pokemonType">Flying</label>
       <br>
-      <input type = "radio" id="pokemonTypes" value="Bug"
+      <input type = "checkbox" id="pokemonTypes" value="Bug"
       <label for="pokemonType">Bug</label>
-      <input type = "radio" id="pokemonTypes" value="Ground"
+      <input type = "checkbox" id="pokemonTypes" value="Ground"
       <label for="pokemonType">Ground</label>
-      <input type = "radio" id="pokemonTypes" value="Ice"
+      <input type = "checkbox" id="pokemonTypes" value="Ice"
       <label for="pokemonType">Ice</label>
-      <input type = "radio" id="pokemonTypes" value="Eletric"
+      <input type = "checkbox" id="pokemonTypes" value="Eletric"
       <label for="pokemonType">Eletric</label>
-      <input type = "radio" id="pokemonTypes" value="Rock"
+      <input type = "checkbox" id="pokemonTypes" value="Rock"
       <label for="pokemonType">Rock</label>
       <br>
-      <input type = "radio" id="pokemonTypes" value="Poison"
+      <input type = "checkbox" id="pokemonTypes" value="Poison"
       <label for="pokemonType">Poison</label>
-      <input type = "radio" id="pokemonTypes" value="Psichic"
+      <input type = "checkbox" id="pokemonTypes" value="Psichic"
       <label for="pokemonType">Psichic</label>
-      <input type = "radio" id="pokemonTypes" value="Ghost"
+      <input type = "checkbox" id="pokemonTypes" value="Ghost"
       <label for="pokemonType"Ghost"</label>
-      <input type = "radio" id="pokemonTypes" value="Dragon"
+      <input type = "checkbox" id="pokemonTypes" value="Dragon"
       <label for="pokemonType">Dragon</label>
-      <input type = "radio" id="pokemonTypes" value="Fighting"
+      <input type = "checkbox" id="pokemonTypes" value="Fighting"
       <label for="pokemonType">Fighting</label>
       <br>
-      <input type="submit" id="submitButton" value="Submit">
+      <button id="submitButton">Submit</button>
+      <button id="closePopupButton"> X </button>
     </div>
   `;
+  pokemonPut.addEventListener('submit', function(event) {
+    event.preventDefault() })
+  const closePopUp = pokemonPut.querySelector('#closePopupButton');
+  closePopUp.addEventListener('click', function() {
+    pokemonPut.style.display = 'none';
+  })
+  // const editPokemon = pokemonPut.querySelector('submitButton')
+  // editPokemon.addEventListener('click', function (){
+    
+  // })
   document.body.appendChild(pokemonPut);
-}
+} 
