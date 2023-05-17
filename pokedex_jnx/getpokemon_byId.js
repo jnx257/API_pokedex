@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 // get the pokemon by Id, just showing one pokemon deetails
 let pokemonName = "";
 function getPokeById() {
@@ -113,14 +115,30 @@ function pokePUTbutton(event) {
     </div>
   `;
   pokemonPut.addEventListener('submit', function(event) {
+
     event.preventDefault() })
+
   const closePopUp = pokemonPut.querySelector('#closePopupButton');
   closePopUp.addEventListener('click', function() {
     pokemonPut.style.display = 'none';
   })
-  // const editPokemon = pokemonPut.querySelector('submitButton')
-  // editPokemon.addEventListener('click', function (){
+
+  const editPokemon = pokemonPut.querySelector('submitButton')
+  editPokemon.addEventListener('click', function (){
+
+    const pokePUTname = document.getElementById('pokemonNamePUT').value
+    const pokePUTimg = document.getElementById('pokemonImgPUT').value
+    fetch(`http://localhost:5000/pokemons/${pokeId}`,{
+      method: "PUT",
+      body: JSON.stringify(
+        {name: pokePUTname,
+          img: pokePUTimg
+        }
+      )
+    })
+    .then()
+//I swear God I'll continue this tomorrow :P
     
-  // })
+ })
   document.body.appendChild(pokemonPut);
 } 
