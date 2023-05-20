@@ -1,4 +1,3 @@
-const { response } = require("express");
 
 // get the pokemon by Id, just showing one pokemon deetails
 let pokemonName = "";
@@ -21,7 +20,7 @@ function getPokeById() {
       pokeId.textContent = `Id: #${pokemonData.id}`;
       const pokeType = document.createElement("h2");
       pokeType.textContent = pokemonData.type;
-      pokemonTypes = pokemonData.type;
+      const pokemonTypes = pokemonData.type;
       line.classList.add("pokemon");
       line.appendChild(pokemonImg);
       line.appendChild(pokeName);
@@ -42,6 +41,7 @@ function getPokeById() {
 }
 
 getPokeById();
+console.log(getPokeById())
 
 // delete method js
 function DelPoke() {
@@ -115,30 +115,29 @@ function pokePUTbutton(event) {
     </div>
   `;
   pokemonPut.addEventListener('submit', function(event) {
-
     event.preventDefault() })
 
-  const closePopUp = pokemonPut.querySelector('#closePopupButton');
-  closePopUp.addEventListener('click', function() {
-    pokemonPut.style.display = 'none';
-  })
-
-  const editPokemon = pokemonPut.querySelector('submitButton')
-  editPokemon.addEventListener('click', function (){
-
-    const pokePUTname = document.getElementById('pokemonNamePUT').value
-    const pokePUTimg = document.getElementById('pokemonImgPUT').value
-    fetch(`http://localhost:5000/pokemons/${pokeId}`,{
-      method: "PUT",
-      body: JSON.stringify(
-        {name: pokePUTname,
-          img: pokePUTimg
-        }
-      )
+    const closePopUp = pokemonPut.querySelector('#closePopupButton');
+    closePopUp.addEventListener('click', function() {
+      pokemonPut.style.display = 'none';
     })
-    .then()
-//I swear God I'll continue this tomorrow :P
-    
- })
+    const pokeChange = pokemonPut.querySelector('#submitButton')
+    pokeChange.addEventListener('click', function (event){
+      event.preventDefault()
+      const pokemonPUTname = document.getElementById('pokemonNamePUT').value
+      const pokemonPUTimg = document.getElementById('pokemonImgPUT').value
+      const pokemonPUTtypes = document.getElementById('pokemonTypes:checked').array.forEach(element => {
+        newTypeArray.push(element.value)
+      });
+      const newTypeArray = []
+      const req_body = {
+        "name": pokemonPUTname,
+        "image": pokemonPUTimg,
+        "type": pokemonPUTtypes
+      }
+      console.log(newTypeArray)
+        })
+      
+
   document.body.appendChild(pokemonPut);
 } 
