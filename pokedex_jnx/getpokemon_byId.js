@@ -64,6 +64,8 @@ function pokePUTbutton(event) {
   //calling event.preventDefault i'm passing that I don't want to execute it as a normal method (dont send nothing until I want it)
   //normal events this would made a immediately PUT
   event.preventDefault();
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id")
   const pokemonPut = document.createElement("form");
   pokemonPut.classList.add("pokemonPUT");
   pokemonPut.innerHTML = `
@@ -126,16 +128,30 @@ function pokePUTbutton(event) {
       event.preventDefault()
       const pokemonPUTname = document.getElementById('pokemonNamePUT').value
       const pokemonPUTimg = document.getElementById('pokemonImgPUT').value
-      const pokemonPUTtypes = document.getElementById('pokemonTypes:checked').array.forEach(element => {
-        newTypeArray.push(element.value)
-      });
-      const newTypeArray = []
+      const newTypeArray = Array.from(
+        document.querySelectorAll('#pokemonTypes:checked')
+      ).map((checkbox) => checkbox.value);
       const req_body = {
-        "name": pokemonPUTname,
-        "image": pokemonPUTimg,
-        "type": pokemonPUTtypes
+        name: pokemonPUTname,
+        image: pokemonPUTimg,
+        type: newTypeArray
       }
-      console.log(newTypeArray)
+      fetch(`http://localhost:5000/pokemons/${id}`,{
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(req_body)
+      })
+      .then((response) => {
+        if(response.ok){
+          return response.json
+        }
+        else {
+          console.log("Was not possible to update the pokemon")
+        }
+      })
+      .catch((error) => console.log(error))
         })
       
 
