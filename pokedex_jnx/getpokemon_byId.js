@@ -75,7 +75,7 @@ function pokePUTbutton(event) {
       <input type="text" id="pokemonNamePUT" value= "${pokemonName}">
       <br>
       <label for="pokemonImg">Insert pokemon image:</label>
-      <input type="file" id="pokemonImgPUT" value="nothing selected">
+      <input type="file" id="pokemonImgPUT" enctype="multipart/form-data" value="nothing selected">
       <br>
       <label for ="pokemonType">Pokemon Type:</label>
       <br>
@@ -150,7 +150,7 @@ function pokePUTbutton(event) {
         else {
           console.log("Was not possible to update the pokemon")
         }
-      })
+      }) 
       .catch((error) => console.log(error))
         })
       

@@ -3,6 +3,8 @@ const router = express.Router();
 const GetPoke = require("./getPoke.json");
 const bodyParser = require("body-parser");
 const fs = require("fs");
+const multer = require('multer')
+const uploudImg = multer({dest:'pokeImages/'})
 let lastObj = GetPoke[GetPoke.length - 1];
 let lastID = lastObj.id;
 const idSequel = (sequel) => {
@@ -57,7 +59,7 @@ router.post("/creatPokemon", (req, res) => {
     });
   }
 });
-router.put("/:id", (req, res) => {
+router.put("/:id",uploud.single('image'), (req, res) => {
   const PokeId = req.params.id;
   const pokemon = GetPoke.find((params) => params.id == PokeId);
   if (!pokemon) {
