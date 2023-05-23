@@ -68,6 +68,7 @@ function pokePUTbutton(event) {
   const id = urlParams.get("id")
   const pokemonPut = document.createElement("form");
   pokemonPut.classList.add("pokemonPUT");
+  pokemonPut.setAttribute('enctype = "multipart/form-data"')
   pokemonPut.innerHTML = `
     <div class="pokePopUp">
       <h3 style="text-align:center">Change Pokemon</h3>
@@ -127,21 +128,18 @@ function pokePUTbutton(event) {
     pokeChange.addEventListener('click', function (event){
       event.preventDefault()
       const pokemonPUTname = document.getElementById('pokemonNamePUT').value
-      const pokemonPUTimg = document.getElementById('pokemonImgPUT').value
+      const pokemonPUTimg = document.getElementById('pokemonImgPUT').files[0]
       const newTypeArray = Array.from(
         document.querySelectorAll('#pokemonTypes:checked')
       ).map((checkbox) => checkbox.value);
-      const req_body = {
-        name: pokemonPUTname,
-        image: pokemonPUTimg,
-        type: newTypeArray
-      }
+      const formData = new FormData()
+      formData.append('name', pokemonPUTname)
+      formData.append('image', pokemonPUTimg)
+      formData.append('type', JSON.stringify(newTypeArray))
+
       fetch(`http://localhost:5000/pokemons/${id}`,{
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(req_body)
+        body: formData
       })
       .then((response) => {
         if(response.ok){

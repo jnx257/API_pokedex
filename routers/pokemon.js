@@ -59,7 +59,7 @@ router.post("/creatPokemon", (req, res) => {
     });
   }
 });
-router.put("/:id",uploud.single('image'), (req, res) => {
+router.put("/:id",uploudImg.single('image'), (req, res) => {
   const PokeId = req.params.id;
   const pokemon = GetPoke.find((params) => params.id == PokeId);
   if (!pokemon) {
@@ -67,7 +67,9 @@ router.put("/:id",uploud.single('image'), (req, res) => {
   } 
   else {
     const AlterPokemonStats = req.body;
-    Object.assign(pokemon, AlterPokemonStats);
+    const AlterPokemonImg =  req.file;
+    const imagePath = AlterPokemonImg.path
+    Object.assign(pokemon, AlterPokemonStats , {image: imagePath});
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
         console.log(err);
