@@ -68,7 +68,7 @@ function pokePUTbutton(event) {
   const id = urlParams.get("id")
   const pokemonPut = document.createElement("form");
   pokemonPut.classList.add("pokemonPUT");
-  pokemonPut.setAttribute('enctype = "multipart/form-data"')
+  pokemonPut.setAttribute('enctype',"multipart/form-data")
   pokemonPut.innerHTML = `
     <div class="pokePopUp">
       <h3 style="text-align:center">Change Pokemon</h3>
@@ -76,7 +76,7 @@ function pokePUTbutton(event) {
       <input type="text" id="pokemonNamePUT" value= "${pokemonName}">
       <br>
       <label for="pokemonImg">Insert pokemon image:</label>
-      <input type="file" id="pokemonImgPUT" enctype="multipart/form-data" value="nothing selected">
+      <input type="file" id="pokemonImgPUT" value="nothing selected">
       <br>
       <label for ="pokemonType">Pokemon Type:</label>
       <br>
@@ -143,7 +143,7 @@ function pokePUTbutton(event) {
       })
       .then((response) => {
         if(response.ok){
-          return response.json
+          return console.log(response)
         }
         else {
           console.log("Was not possible to update the pokemon")

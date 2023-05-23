@@ -4,6 +4,7 @@ const GetPoke = require("./getPoke.json");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const multer = require('multer')
+//are missing some att in my PokeImg file - like the extesion and the first "/"
 const uploudImg = multer({dest:'pokeImages/'})
 let lastObj = GetPoke[GetPoke.length - 1];
 let lastID = lastObj.id;
