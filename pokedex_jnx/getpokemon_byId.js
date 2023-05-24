@@ -107,7 +107,7 @@ function pokePUTbutton(event) {
       <input type = "checkbox" id="pokemonTypes" value="Psichic"
       <label for="pokemonType">Psichic</label>
       <input type = "checkbox" id="pokemonTypes" value="Ghost"
-      <label for="pokemonType"Ghost"</label>
+      <label for="pokemonType">Ghost</label>
       <input type = "checkbox" id="pokemonTypes" value="Dragon"
       <label for="pokemonType">Dragon</label>
       <input type = "checkbox" id="pokemonTypes" value="Fighting"
@@ -135,7 +135,7 @@ function pokePUTbutton(event) {
       const formData = new FormData()
       formData.append('name', pokemonPUTname)
       formData.append('image', pokemonPUTimg)
-      formData.append('type', JSON.stringify(newTypeArray))
+      formData.append('type', newTypeArray)
 
       fetch(`http://localhost:5000/pokemons/${id}`,{
         method: "PUT",
