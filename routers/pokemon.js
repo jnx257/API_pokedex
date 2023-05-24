@@ -4,8 +4,16 @@ const GetPoke = require("./getPoke.json");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const multer = require('multer')
-//are missing some att in my PokeImg file - like the extesion and the first "/"
-const uploudImg = multer({dest:'pokeImages/'})
+const path = require ('path')
+const storageImg = multer.diskStorage({
+  destination: function (req,file,cb) {
+    cb(null,'pokeImages/')
+  },
+  filename: function (req,file,cb) {
+    cb(null, Date.now()+ path.extname(file.originalname))
+  }
+})
+const uploadImg = multer({storage: storageImg})
 let lastObj = GetPoke[GetPoke.length - 1];
 let lastID = lastObj.id;
 const idSequel = (sequel) => {
@@ -45,7 +53,7 @@ router.post("/creatPokemon", (req, res) => {
         ? "type"
         : "image"
     );
-    res.status(406).send("something is missing..");
+    res.status(406).send("something is missing.."); 
   } else {
     const newId = idSequel();
     NewPokemon.id = newId;
@@ -60,7 +68,7 @@ router.post("/creatPokemon", (req, res) => {
     });
   }
 });
-router.put("/:id",uploudImg.single('image'), (req, res) => {
+router.put("/:id",uploadImg.single('image'), (req, res) => {
   const PokeId = req.params.id;
   const pokemon = GetPoke.find((params) => params.id == PokeId);
   if (!pokemon) {
@@ -69,7 +77,7 @@ router.put("/:id",uploudImg.single('image'), (req, res) => {
   else {
     const AlterPokemonStats = req.body;
     const AlterPokemonImg =  req.file;
-    const imagePath = AlterPokemonImg.path
+    const imagePath = `/${AlterPokemonImg.path}`
     Object.assign(pokemon, AlterPokemonStats , {image: imagePath});
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
