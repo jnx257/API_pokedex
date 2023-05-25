@@ -38,16 +38,16 @@ router.get("/:id", (req, res) => {
   }
 });
 //this POST method, you can creat pokemon that you want
-router.post("/creatPokemon", (req, res) => {
+router.post("/", uploadImg.single('image'), (req, res) => {
   const NewPokemon = req.body;
+  const NewpokemonImg = req.file
+  const pokeImgPath = `/${NewpokemonImg.path}`
   console.log(`new pokemon calls: ${NewPokemon.name}`);
 
-  if (!NewPokemon.name || !NewPokemon.type || !NewPokemon.image) {
+  if (!NewPokemon.name || !NewPokemon.type || !NewpokemonImg) {
     console.log(
       "Are missing the/those properties:",
-      !NewPokemon.id
-        ? "id"
-        : !NewPokemon.name
+       !NewPokemon.name
         ? "name"
         : !NewPokemon.type
         ? "type"
@@ -57,6 +57,7 @@ router.post("/creatPokemon", (req, res) => {
   } else {
     const newId = idSequel();
     NewPokemon.id = newId;
+    Object.assign( NewPokemon, {image:pokeImgPath});
     GetPoke.push(NewPokemon);
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {

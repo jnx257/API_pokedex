@@ -49,3 +49,36 @@ nav a {
   color: black;
   text-decoration: underline;
 }
+.pokemonCreate {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: rgb(131, 131, 131);
+  border: 2px solid black
+}
+#closePopupButton {
+  background-color: red;
+  border: 3px solid black;
+  text-align: center;
+  display: inline-block;
+  font-size: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#submitButton{
+  margin-top: 10px;
+  margin-top: 10px;
+  margin-left: 50%;
+  transform: translate(-50%);}
+  
+  #closePopupButton {
+    background-color: red;
+    border: 3px solid black;
+    text-align: center;
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
