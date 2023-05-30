@@ -1,0 +1,84 @@
+body {
+  background-color: rgb(192, 15, 15);
+}
+h1 {
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+}
+p,
+a {
+  color: rgb(0, 0, 0);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+nav {
+  display: block;
+  text-align: center;
+}
+nav a {
+  color: black;
+}
+#pokemonPrime {
+  background-color:rgb(32, 138, 180);
+
+}
+#pokemon-list {
+  padding: 10px;
+}
+.listbody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.pokemon {
+  list-style: none;
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(131, 131, 131);
+}
+.pokemon img {
+  border: 2px solid black;
+  margin-top: 10px;
+  background-color:beige
+}
+.pokemon li {
+  color: black;
+  text-decoration: underline;
+}
+.pokemonCreate {
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  background-color: rgb(131, 131, 131);
+  border: 2px solid black
+}
+#closePopupButton {
+  background-color: red;
+  border: 3px solid black;
+  text-align: center;
+  display: inline-block;
+  font-size: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#submitButton{
+  margin-top: 10px;
+  margin-top: 10px;
+  margin-left: 50%;
+  transform: translate(-50%);}
+  
+  #closePopupButton {
+    background-color: red;
+    border: 3px solid black;
+    text-align: center;
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
