@@ -2,9 +2,12 @@ function getPoke() {
   fetch("http://localhost:5000/pokemons")
     .then((response) => response.json())
     .then((data) => {
-      const dataList = document.querySelector("#pokemon-list listbody");
+      const dataList = document.querySelector("#pokemon-list listbody")
       dataList.innerHTML = "";
+      const search = document.querySelector("#searchBar").value.toLowerCase()
       data.forEach((element) => {
+        const Pokename = element.name.toLowerCase()
+        if (Pokename.includes(search)){
         const row = document.createElement("li");
         const nameElement = document.createElement("li");
         nameElement.textContent = `name: ${element.name}`;
@@ -26,8 +29,12 @@ function getPoke() {
         row.appendChild(typeElement);
         row.appendChild(imageElement);
         dataList.appendChild(row);
+        }
       });
     })
     .catch((error) => console.log(error));
 }
+const search = document.querySelector("#searchBar")
+search.addEventListener("input", getPoke)
+
 getPoke();
