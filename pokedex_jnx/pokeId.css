@@ -10,10 +10,14 @@ p, h1 a::before{
   color:aliceblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-nav {
-  display: block;
-  text-align: center;
-}
+  nav {
+    display: block;
+    text-align: center;
+    padding: 2px;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
 nav a {
   color: black;
 }

@@ -76,7 +76,8 @@ function createPokeButton() {
     })
     .then((response) => {
     if(response.ok){
-        return console.log(response)
+        console.log(response)
+        location.reload(true)
     }
     else {
         console.log("Was not possible to create the pokemon")

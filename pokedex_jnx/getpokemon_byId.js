@@ -53,6 +53,7 @@ function DelPoke() {
     .then((response) => {
       if (response.ok) {
         console.log("Pokemon has been deleted");
+        setTimeout(location.replace("index.html"),1000)
       } else {
         console.log("Was not possible to delete the pokemon");
       }
@@ -63,7 +64,6 @@ function DelPoke() {
 function pokePUTbutton(event) {
   //calling event.preventDefault i'm passing that I don't want to execute it as a normal method (dont send nothing until I want it)
   //normal events this would made a immediately PUT
-  event.preventDefault();
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id")
   const pokemonPut = document.createElement("form");
@@ -143,15 +143,18 @@ function pokePUTbutton(event) {
       })
       .then((response) => {
         if(response.ok){
-          return console.log(response)
+          setTimeout(() => {
+            location.reload(true);
+          }, 1000)
         }
         else {
           console.log("Was not possible to update the pokemon")
         }
       }) 
+      .then(() => window.location.reload(true) )
       .catch((error) => console.log(error))
-        })
-      
-
+        }
+      )
+        
   document.body.appendChild(pokemonPut);
 } 
