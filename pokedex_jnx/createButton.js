@@ -70,7 +70,7 @@ function createPokeButton() {
     formData.append('image', newPokemonImg)
     formData.append('type', newPokemonTypes)
 
-    fetch('http://localhost:5000/pokemons', {
+    fetch('http://localhost:8080/pokemons', {
         method: "POST",
         body: formData
     })

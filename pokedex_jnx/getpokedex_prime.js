@@ -1,5 +1,5 @@
 function getPoke() {
-  fetch("http://localhost:5000/pokemons")
+  fetch("http://localhost:8080/pokemons")
     .then((response) => response.json())
     .then((data) => {
       const dataList = document.querySelector("#pokemon-list listbody")

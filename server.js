@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 const http = require("http");
-const PORT = 5000;
+const PORT = process.env.PORT || "8080"
 const router = express.Router();
 const pokemonRouter = require("./routers/pokemon");
 const cors = require('cors')
