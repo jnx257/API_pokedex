@@ -4,7 +4,7 @@ let pokemonName = "";
 function getPokeById() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
-  fetch(`http://localhost:8080/pokemons/${id}`)
+  fetch(`https://jnxpokedex.fly.dev/pokemons/${id}`)
     .then((response) => response.json())
     .then((pokemonData) => {
       const pokemonDataById = document.querySelector("#pokemonData");
@@ -47,7 +47,7 @@ console.log(getPokeById())
 function DelPoke() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
-  fetch(`http://localhost:5000/pokemons/${id}`, {
+  fetch(`https://jnxpokedex.fly.dev/pokemons/${id}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -137,7 +137,7 @@ function pokePUTbutton(event) {
       formData.append('image', pokemonPUTimg)
       formData.append('type', newTypeArray)
 
-      fetch(`http://localhost:8080/pokemons/${id}`,{
+      fetch(`https://jnxpokedex.fly.dev/pokemons/${id}`,{
         method: "PUT",
         body: formData
       })

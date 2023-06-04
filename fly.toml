@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for jnxpokedex on 2023-06-02T07:16:23-03:00
+# fly.toml app configuration file generated for jnxpokedex on 2023-06-03T21:26:48-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -15,3 +15,6 @@ primary_region = "gru"
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
+[[mounts]]
+source = "pokeImages"
+destination = "/app/pokeImages"

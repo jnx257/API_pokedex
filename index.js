@@ -8,6 +8,7 @@ const router = express.Router();
 const pokemonRouter = require("./routers/pokemon");
 const cors = require('cors')
 app.use(cors())
+app.use('/pokeImages', express.static('images'));
 
 
 app.listen(PORT, () => {
@@ -16,7 +17,7 @@ app.listen(PORT, () => {
 
 //pokedex
 app.get("/", (req, res) => {
-  res.status(200).send("Pokedex principal page");
+  res.status(200).send("jnx pokedex");
 });
 app.use("/pokemons", pokemonRouter);
 app.use(express.json());
