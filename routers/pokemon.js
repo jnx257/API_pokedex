@@ -23,6 +23,7 @@ const idSequel = (sequel) => {
 router.use(bodyParser.json());
 //this get method, response all pokemon thta contain in JSON file.
 router.get("/", (req, res) => {
+  console.log(__dirname)
   res.status(200).json(GetPoke);
 });
 //this get method, response each pokemon array, using by Id.
