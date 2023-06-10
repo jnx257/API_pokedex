@@ -19,7 +19,8 @@ function getPoke() {
         const imageLink = document.createElement("a");
         imageLink.href = `Idpokemon.html?id=${element.id}`;
         const image = document.createElement("img");
-        image.src = `/pokeImage/${element.image}`;
+        const elementImg = element.image
+        image.src = elementImg.substring(12,elementImg.length);
         image.alt = element.name;
         imageLink.appendChild(image);
         imageElement.appendChild(imageLink);

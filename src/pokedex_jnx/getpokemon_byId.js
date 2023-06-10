@@ -11,7 +11,8 @@ function getPokeById() {
       pokemonDataById.innerHTML = "";
       const line = document.createElement("div");
       const pokemonImg = document.createElement("img");
-      pokemonImg.src = pokemonData.image;
+      imageLink.href = `Idpokemon.html?id=${pokemonData.id}`;
+      pokemonImg.src = elementImg.substring(12,elementImg.length);
       pokemonImg.alt = pokemonData.name;
       const pokeName = document.createElement("h2");
       pokemonName = pokemonData.name;
