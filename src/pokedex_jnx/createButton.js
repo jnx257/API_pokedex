@@ -7,7 +7,7 @@ function createPokeButton() {
       <div class="pokePopUp">
         <h3 style="text-align:center">Create Pokemon</h3>
         <label for="pokemonName">Pokemon name:</label>
-        <input type="text" id="pokemonNamePOST" value="Insert Pokemon Name">
+        <input type="text" id="pokemonNamePOST" placeholder="Insert Pokemon Name">
         <br>
         <label for="pokemonImg">Insert pokemon image:</label>
         <input type="file" id="pokemonImgPOST" value="nothing selected">
@@ -70,7 +70,7 @@ function createPokeButton() {
     formData.append('image', newPokemonImg)
     formData.append('type', newPokemonTypes)
 
-    fetch('https://jnxpokedex.fly.dev/pokemons', {
+    fetch('https://jnxpokedex.fly.dev/', {
         method: "POST",
         body: formData
     })
@@ -81,6 +81,7 @@ function createPokeButton() {
     }
     else {
         console.log("Was not possible to create the pokemon")
+        console.log(formData)
     }
 })
 .catch((error) => console.log(error))

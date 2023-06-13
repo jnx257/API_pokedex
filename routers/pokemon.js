@@ -5,9 +5,10 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 const multer = require('multer')
 const path = require ('path')
+const cors = require('cors')
 const storageImg = multer.diskStorage({
   destination: function (req,file,cb) {
-    cb(null,'pokeImages/')
+    cb(null,'./src/pokeImages')
   },
   filename: function (req,file,cb) {
     cb(null, Date.now()+ path.extname(file.originalname))
@@ -19,7 +20,7 @@ let lastID = lastObj.id;
 const idSequel = (sequel) => {
   return (lastID += 1);
 };
-
+router.use(cors())
 router.use(bodyParser.json());
 //this get method, response all pokemon thta contain in JSON file.
 router.get("/", (req, res) => {
@@ -42,7 +43,7 @@ router.get("/:id", (req, res) => {
 router.post("/", uploadImg.single('image'), (req, res) => {
   const NewPokemon = req.body;
   const NewpokemonImg = req.file
-  const pokeImgPath = `/${NewpokemonImg.path}`
+  const pokeImgPath = NewpokemonImg.path
   console.log(`new pokemon calls: ${NewPokemon.name}`);
 
   if (!NewPokemon.name || !NewPokemon.type || !NewpokemonImg) {
@@ -56,11 +57,11 @@ router.post("/", uploadImg.single('image'), (req, res) => {
     );
     res.status(406).send("something is missing.."); 
   } else {
-    const newId = idSequel();
+    const newId = idSequel(); 
     NewPokemon.id = newId;
     Object.assign( NewPokemon, {image:pokeImgPath});
     GetPoke.push(NewPokemon);
-    fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
+    fs.writeFile("getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
         console.error(err);
         res.status(500).send("Didnt creat new pokemon");

@@ -15,6 +15,7 @@ app.listen(PORT, () => {
 
 app.use(express.static(path.join(__dirname, 'src', 'pokeImages')))
 app.use(express.static(path.join(__dirname, 'src', 'pokedex_jnx')))
+app.use(express.static(path.join(__dirname,'routers')))
 app.get('/', (req,res) => {
 res.sendFile(path.join(__dirname, 'src', 'pokedex_jnx', 'index.html').send)
 })
