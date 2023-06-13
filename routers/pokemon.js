@@ -40,7 +40,7 @@ router.get("/:id", (req, res) => {
   }
 });
 //this POST method, you can creat pokemon that you want
-router.post("/", uploadImg.single('image'), (req, res) => {
+router.post("/createPokemon", uploadImg.single('image'), (req, res) => {
   const NewPokemon = req.body;
   const NewpokemonImg = req.file
   const pokeImgPath = NewpokemonImg.path

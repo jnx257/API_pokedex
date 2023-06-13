@@ -4,7 +4,7 @@ let pokemonName = "";
 function getPokeById() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
-  fetch(`https://jnxpokedex.fly.dev/pokemons/${id}`)
+  fetch(`https://jnxpokedex.fly.dev/${id}`)
     .then((response) => response.json())
     .then((pokemonData) => {
       const pokemonDataById = document.querySelector("#pokemonData");
