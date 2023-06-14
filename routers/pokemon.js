@@ -59,7 +59,7 @@ router.post("/createPokemon", uploadImg.single('image'), (req, res) => {
   } else {
     const newId = idSequel(); 
     NewPokemon.id = newId;
-    Object.assign( NewPokemon, {image:pokeImgPath});
+    Object.assign( NewPokemon, {image:pokeImgPath.substring(3,pokeImgPath.length)});
     GetPoke.push(NewPokemon);
     fs.writeFile("getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
@@ -67,6 +67,7 @@ router.post("/createPokemon", uploadImg.single('image'), (req, res) => {
         res.status(500).send("Didnt creat new pokemon");
       } else {
         res.status(201).send("New pokemon created :D");
+        console.log(pokeImgPath)
       }
     });
   }
@@ -80,7 +81,7 @@ router.put("/:id",uploadImg.single('image'), (req, res) => {
   else {
     const AlterPokemonStats = req.body;
     const AlterPokemonImg =  req.file;
-    const imagePath = `/${AlterPokemonImg.path}`
+    const imagePath = AlterPokemonImg.path.substring(3,AlterPokemonImg.length)
     Object.assign(pokemon, AlterPokemonStats , {image: imagePath});
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {

@@ -4,15 +4,15 @@ let pokemonName = "";
 function getPokeById() {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
-  fetch(`https://jnxpokedex.fly.dev/${id}`)
+  fetch(`https://jnxpokedex.fly.dev/pokemons/${id}`)
     .then((response) => response.json())
     .then((pokemonData) => {
       const pokemonDataById = document.querySelector("#pokemonData");
       pokemonDataById.innerHTML = "";
       const line = document.createElement("div");
       const pokemonImg = document.createElement("img");
-      imageLink.href = `Idpokemon.html?id=${pokemonData.id}`;
-      pokemonImg.src = elementImg.substring(12,elementImg.length);
+      // imageLink.href = `Idpokemon.html?id=${pokemonData.id}`;
+      pokemonImg.src = pokemonData.image.substring(12,pokemonData.length);
       pokemonImg.alt = pokemonData.name;
       const pokeName = document.createElement("h2");
       pokemonName = pokemonData.name;

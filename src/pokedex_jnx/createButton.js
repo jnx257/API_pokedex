@@ -70,7 +70,7 @@ function createPokeButton() {
     formData.append('image', newPokemonImg)
     formData.append('type', newPokemonTypes)
 
-    fetch('https://jnxpokedex.fly.dev/createPokemon', {
+    fetch('https://jnxpokedex.fly.dev/pokemons/createPokemon', {
         method: "POST",
         body: formData
     })
