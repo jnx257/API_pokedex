@@ -3,90 +3,91 @@ const router = express.Router();
 const GetPoke = require("./getPoke.json");
 const bodyParser = require("body-parser");
 const fs = require("fs");
-const multer = require('multer')
-const path = require ('path')
-const cors = require('cors')
+const multer = require("multer");
+const path = require("path");
+const cors = require("cors");
 const storageImg = multer.diskStorage({
-  destination: function (req,file,cb) {
-    cb(null,'./src/pokeImages')
+  destination: function (req, file, cb) {
+    cb(null, "./src/pokeImages");
   },
-  filename: function (req,file,cb) {
-    cb(null, Date.now()+ path.extname(file.originalname))
-  }
-})
-const uploadImg = multer({storage: storageImg})
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const uploadImg = multer({ storage: storageImg });
 let lastObj = GetPoke[GetPoke.length - 1];
 let lastID = lastObj.id;
 const idSequel = (sequel) => {
   return (lastID += 1);
 };
-router.use(cors())
+router.use(cors());
 router.use(bodyParser.json());
-//this get method, response all pokemon thta contain in JSON file.
+
+//return my JSON (database)
 router.get("/", (req, res) => {
-  console.log(__dirname)
+  console.log(__dirname);
   res.status(200).json(GetPoke);
 });
-//this get method, response each pokemon array, using by Id.
+
+//return individual pokemon Data as a list
 router.get("/:id", (req, res) => {
   const PokeId = req.params.id;
   const pokemon = GetPoke.find((params) => params.id == PokeId);
   if (!pokemon) {
     res
       .status(404)
-      .send("this pokemon inst in first generation or doesnt exist...");
+      .send("This pokemon is not in first generation or does not exist...");
   } else {
     res.status(200).json(pokemon);
   }
 });
-//this POST method, you can creat pokemon that you want
-router.post("/createPokemon", uploadImg.single('image'), (req, res) => {
+
+//add a new pokemon to JSON and Upload a IMG to PokeImg folder
+router.post("/createPokemon", uploadImg.single("image"), (req, res) => {
   const NewPokemon = req.body;
-  const NewpokemonImg = req.file
-  const pokeImgPath = NewpokemonImg.path
+  const NewpokemonImg = req.file;
+  const pokeImgPath = NewpokemonImg.path;
   console.log(`new pokemon calls: ${NewPokemon.name}`);
 
   if (!NewPokemon.name || !NewPokemon.type || !NewpokemonImg) {
     console.log(
       "Are missing the/those properties:",
-       !NewPokemon.name
-        ? "name"
-        : !NewPokemon.type
-        ? "type"
-        : "image"
+      !NewPokemon.name ? "name" : !NewPokemon.type ? "type" : "image"
     );
-    res.status(406).send("something is missing.."); 
+    res.status(406).send("something is missing..");
   } else {
-    const newId = idSequel(); 
+    const newId = idSequel();
     NewPokemon.id = newId;
-    Object.assign( NewPokemon, {image:pokeImgPath.substring(3,pokeImgPath.length)});
+    Object.assign(NewPokemon, {
+      image: pokeImgPath.substring(3, pokeImgPath.length),
+    });
     GetPoke.push(NewPokemon);
     fs.writeFile("getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
         console.error(err);
-        res.status(500).send("Didnt creat new pokemon");
+        res.status(500).send("Did not create new pokemon");
       } else {
-        res.status(201).send("New pokemon created :D");
-        console.log(pokeImgPath)
+        res.status(201).send("New pokemon created");
+        console.log(pokeImgPath);
       }
     });
   }
 });
-router.put("/:id",uploadImg.single('image'), (req, res) => {
+//Alter pokemon stats as: name, type or image
+router.put("/:id", uploadImg.single("image"), (req, res) => {
   const PokeId = req.params.id;
   const pokemon = GetPoke.find((params) => params.id == PokeId);
   if (!pokemon) {
     res.status(404).send("Pokemon Not Found!");
-  } 
-  else {
+  } else {
     const AlterPokemonStats = req.body;
-    const AlterPokemonImg =  req.file;
-    const imagePath = AlterPokemonImg.path.substring(3,AlterPokemonImg.length)
-    Object.assign(pokemon, AlterPokemonStats , {image: imagePath});
+    const AlterPokemonImg = req.file;
+    const imagePath = AlterPokemonImg.path.substring(3, AlterPokemonImg.length);
+    Object.assign(pokemon, AlterPokemonStats, { image: imagePath });
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
       if (err) {
         console.log(err);
-        res.status(500).send("didnt add nothing to pokemon");
+        res.status(500).send("nothing add");
       } else {
         res
           .status(202)
@@ -100,12 +101,12 @@ router.put("/:id",uploadImg.single('image'), (req, res) => {
   }
 });
 
-//DELETING A POKEMON
+//Delete a pokemon
 router.delete("/:id", (req, res) => {
   const PokeId = req.params.id;
   const pokemonIndex = GetPoke.findIndex((params) => params.id == PokeId);
   if (pokemonIndex == -1) {
-    res.status(404).send("Pokemon Not Found!");
+    res.status(404).send("Pokemon Not Found");
   } else {
     GetPoke.splice(pokemonIndex, 1);
     fs.writeFile("routers/getPoke.json", JSON.stringify(GetPoke), (err) => {
