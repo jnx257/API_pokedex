@@ -5,10 +5,10 @@ This is a basic pokedex API. For this API i've used Node.js <a href='https://git
 And as a DB, a JSON in the current link <a>https://ifpb.github.io/intin-topicos/desafios/pokedex/code/data/pokedex.json</a>.
 
 # HTTP METHODS
-My API got five methods:
-GET - shows every pokemon description: name, id, types and a image.
-GET (including the pokemon ID in URL) - shows the specific pokemon details.
-POST - Add in DB information of a new pokemon (name, type and image).
+My API got five methods:</br>
+GET - shows every pokemon description: name, id, types and a image.</br>
+GET (including the pokemon ID in URL) - shows the specific pokemon details.</br>
+POST - Add in DB information of a new pokemon (name, type and image).</br>
 PUT - Change pokemon details.
 
 # HTML / DEPLOY
